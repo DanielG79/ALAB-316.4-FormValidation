@@ -24,6 +24,15 @@ function ValidateRegistration() {
 
     clearError();
 
+    // Registration Form - Username Validation:
+// The username cannot be blank.
+// The username must be at least four characters long.
+// The username must contain at least two unique characters.
+// The username cannot contain any special characters or whitespace.
+// Registration Form - Email Validation:
+// The email must be a valid email address.
+// The email must not be from the domain "example.com."
+
     if (!userName) {
         displayError("Username cannot be blank.");
         return false;
@@ -43,6 +52,15 @@ function ValidateRegistration() {
         displayError("Email cannot be from the domain 'example.com'.");
         return false;
     }
+
+// Registration Form - Password Validation:
+// Passwords must be at least 12 characters long.
+// Passwords must have at least one uppercase and one lowercase letter.
+// Passwords must contain at least one number.
+// Passwords must contain at least one special character.
+// Passwords cannot contain the word "password" (uppercase, lowercase, or mixed).
+// Passwords cannot contain the username.
+// Both passwords must match.
 
     if (password.length < 12) {
         displayError("Password must be at least 12 characters long.");
@@ -78,4 +96,22 @@ function ValidateRegistration() {
         displayError("You must agree to the Terms of Use.");
         return false;
     }
+
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const existingUser = storedUsers.find(user => user.username === userName.toLowerCase());
+    if (existingUser) {
+        displayError("The userName is already taken.");
+        return false;
+    }
+
+    const newUser = {
+        userName,email,password
+    };
+    storedUsers.push(newUser);
+    localStorage.setItem("users", JSON.stringify (storedUsers));
+
+    document.forms["registration"].reset();
+    displaySuccess("Registration Successful!");
+
+    return false;
 }
