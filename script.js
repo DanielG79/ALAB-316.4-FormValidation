@@ -152,3 +152,30 @@ function validateLogin() {
     return false;
 }
 
+function isValidEmail(email) {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Error messages
+
+function displayError(message) {
+    const errorDisplay = document.getElementById("errorDisplay");
+    errorDisplay.textContent = message;
+    errorDisplay.style.display = "block";
+}
+
+function displaySuccess(message) {
+    const errorDisplay = document.getElementById("errorDisplay");
+    errorDisplay.textContent = message;
+    errorDisplay.className = "success";
+    errorDisplay.style.display = "block";
+}
+
+function clearError() {
+    const errorDisplay = document.getElementById("errorDisplay");
+    errorDisplay.textContent = "";
+    errorDisplay.className = "";
+    errorDisplay.style.display = "none";
+}
