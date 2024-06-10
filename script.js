@@ -97,6 +97,8 @@ function ValidateRegistration() {
         return false;
     }
 
+    // Local Storage
+    
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
     const existingUser = storedUsers.find(user => user.username === userName.toLowerCase());
     if (existingUser) {
