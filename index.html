@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
+    <!-- Font Awesome for Icons -->
     <script src="https://kit.fontawesome.com/d8f052c6cf.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
-    <script defer src="./script.js"></script>
+
 </head>
 
 <body>
@@ -19,21 +18,22 @@
             <p>Please provide your information below.</p>
 
             <!-- Registration Form -->
-            <form id="registration">
-                <input name="username" type="text" placeholder="Username" />
+            <form id="registration" onsubmit="return validateRegistration()">
+                <input name="username" type="text" placeholder="Username" required />
                 <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
 
-                <input name="email" type="text" placeholder="Email" />
+                <input name="email" type="email" placeholder="Email" required />
                 <span class="input-icon"><i class="fa-solid fa-envelope"></i></span><br />
 
-                <input name="password" type="text" placeholder="Password" />
+                <input name="password" type="password" placeholder="Password" required />
                 <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
 
-                <input name="passwordCheck" type="text" placeholder="Repeat Password" />
+                <input name="passwordCheck" type="password" placeholder="Repeat Password" required
+                    oninput="validatePassword()" />
                 <span class="input-icon"><i class="fa-solid fa-key"></i></span><br /><br />
 
                 <div class="flex-row">
-                    <input name="terms" type="checkbox" />
+                    <input name="terms" type="checkbox" required />
                     <label for="terms">I agree to the&nbsp;<a href="#">Terms of Use</a>.</label>
                     <input type="submit" value="Register" />
                 </div>
@@ -46,11 +46,11 @@
             <p>Login using your account information.</p>
 
             <!-- Login Form -->
-            <form id="login" style="border-bottom: 1px solid lightgray">
-                <input name="username" type="text" placeholder="Username" />
+            <form id="login" onsubmit="return validateLogin()">
+                <input name="username" type="text" placeholder="Username" required />
                 <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
 
-                <input name="password" type="text" placeholder="Password" />
+                <input name="password" type="password" placeholder="Password" required />
                 <span class="input-icon"><i class="fa-solid fa-key"></i></span><br /><br />
 
                 <div class="flex-row">
@@ -67,6 +67,8 @@
 
     <!-- Error Display Container -->
     <div id="errorDisplay"></div>
+
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
 </html>
